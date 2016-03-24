@@ -14,7 +14,7 @@
   become: yes
 
 - name: Ensure homebrew is installed.
-  command: /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  shell: /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
   args:
     creates: /usr/local/bin/brew
 
