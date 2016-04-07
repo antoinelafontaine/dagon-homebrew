@@ -47,12 +47,10 @@
   when: homebrew_binary.stat.exists == false
   become: yes
 
-# Tap.
 - name: Ensure configured taps are tapped.
   homebrew_tap: "tap={{ item }} state=present"
   with_items: "{{ homebrew_taps }}"
 
-# Brew.
 - name: Ensure configured homebrew packages are installed.
   homebrew: "name={{ item }} state=present"
   with_items: "{{ homebrew_installed_packages }}"
@@ -61,7 +59,6 @@
   homebrew: update_homebrew=yes upgrade_all=yes
   when: homebrew_upgrade_all_packages
 
-# Cask.
 - name: Get list of apps installed with cask.
   command: >
     bash -l -c '{{ homebrew_brew_bin_path }}/brew cask list'
@@ -69,7 +66,6 @@
   always_run: yes
   changed_when: false
 
-# Use command module instead of homebrew_cask so appdir can be used.
 - name: Install configured cask applications.
   command: >
     bash -l -c '{{ homebrew_brew_bin_path }}/brew cask install {{ item }} --appdir={{ homebrew_cask_appdir }}'

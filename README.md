@@ -1,1 +1,4 @@
-# Dagon - Homebrew role
+dagon.homebrew
+=========
+
+Setup homebrew for the Dagon environment
